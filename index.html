@@ -50,7 +50,7 @@
         timestamp: new Date().toISOString()
       };  
       try {
-        const res = await fetch('https://ojashop.app.n8n.cloud/webhook/lead-capture', {
+        const res = await fetch('https://ojashop.app.n8n.cloud/webhook-test/lead-capture', {
           method: 'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(formData)
         });
         if (res.ok) {document.getElementById('successMessage').style.display='block'; this.style.display='none';}
@@ -59,4 +59,5 @@
     });
   </script>
 </body>
+
 </html>
