@@ -1,62 +1,51 @@
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>N8N Lead Capture Form</title>
-  <style>
-    body {font-family:'Segoe UI',sans-serif; background:#f4f6f8; display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0;}
-    .form-container {background:white;padding:30px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,0.1);max-width:500px;width:100%;}
-    h2 {margin-top:0;color:#333;text-align:center;}
-    .form-group {margin-bottom:15px;}
-    label {display:block;margin-bottom:5px;color:#555;}
-    input,textarea {width:100%;padding:10px;border:1px solid #ccc;border-radius:5px;font-size:14px;}
-    .submit-btn {width:100%;padding:12px;background:#667eea;color:white;border:none;border-radius:5px;font-size:16px;cursor:pointer;}
-    .submit-btn:hover {background:#5a67d8;}
-    .success-message {display:none;padding:15px;background:#d4edda;color:#155724;border-radius:5px;text-align:center;}
-  </style>
-</head>
-<body>
-  <div class="form-container">
-    <h2>Contact Us</h2>
-    <form id="leadForm">
-      <div class="form-group">
-        <label for="name">Name *</label>
-        <input type="text" id="name" name="name" required>
-      </div>
-      <div class="form-group">
-        <label for="email">Email *</label>
-        <input type="email" id="email" name="email" required>
-      </div>
-      <div class="form-group">
-        <label for="message">Message *</label>
-        <textarea id="message" name="message" rows="4" required></textarea>
-      </div>
-      <button type="submit" class="submit-btn">Send Message</button>
-    </form>
-    <div id="successMessage" class="success-message">
-      ✅ Thank you! We'll get back to you soon.
-    </div>
-  </div>
+README
+This repository contains a GitHub Pages-ready static contact form that sends form data to an n8n webhook.
 
-  <script>
-    document.getElementById('leadForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const formData = { 
-        name: this.name.value,
-        email: this.email.value,
-        message: this.message.value,
-        source: 'GitHub Pages Form',
-        timestamp: new Date().toISOString()
-      };  
-      try {
-        const res = await fetch('YOUR_N8N_WEBHOOK_URL_HERE', {
-          method: 'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(formData)
-        });
-        if (res.ok) {document.getElementById('successMessage').style.display='block'; this.style.display='none';}
-        else throw new Error('Network error');
-      } catch (err) {alert('Error sending message.'); console.error(err);}  
-    });
-  </script>
-</body>
+Files
+index.html: The complete HTML, CSS, and JavaScript code for the form.
 
-</html>
+Setup Instructions
+Clone or Download this repository to your local machine.
+
+Replace Webhook URL
+
+Open index.html.
+
+Locate YOUR_N8N_WEBHOOK_URL_HERE in the JavaScript section.
+
+Replace with your actual n8n webhook URL (e.g., https://n8n.example.com/webhook-lead-capture).
+
+Commit & Push to GitHub
+
+bash
+git init
+git add index.html README.md
+git commit -m "Initial commit: Add static contact form"
+git branch -M main
+git remote add origin https://github.com/<YOUR_USERNAME>/<REPO_NAME>.git
+git push -u origin main
+Enable GitHub Pages
+
+Go to your repository on GitHub.
+
+Click Settings → Pages.
+
+Select Deploy from a branch.
+
+Choose main branch and root folder.
+
+Click Save.
+
+Access Your Form
+
+Your form will be live at https://<YOUR_USERNAME>.github.io/<REPO_NAME>/.
+
+Usage
+Fill out the form fields and click Send Message.
+
+On successful submission, a confirmation message appears.
+
+Form data is sent as JSON to your n8n webhook for further processing.
+
+License
+This project is licensed under the MIT License. Feel free to use and modify it for your own purposes.
